@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOC Anchor Checker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Anchor Checker</h1>
+      <button id="scanBtn" class="primary-btn">Scan TOC</button>
+    </header>
+
+    <div class="settings">
+      <div class="toggle-group">
+        <label class="switch">
+          <input type="checkbox" id="showBrokenOnly">
+          <span class="slider"></span>
+        </label>
+        <span>Show Broken Only</span>
+      </div>
+      <div class="toggle-group">
+        <label class="switch">
+          <input type="checkbox" id="autoDetectToc" checked>
+          <span class="slider"></span>
+        </label>
+        <span>Auto-detect TOC</span>
+      </div>
+    </div>
+
+    <div class="selectors-area">
+      <label for="tocSelectors">TOC Selectors (1 per line):</label>
+      <textarea id="tocSelectors" rows="3" placeholder=".ez-toc-container&#10;.rank-math-toc"></textarea>
+    </div>
+
+    <div id="summary" class="summary-pills" style="display: none;">
+      <div class="pill total">TOC Total: <span id="totalCount">0</span></div>
+      <div class="pill ok">TOC OK: <span id="okCount">0</span></div>
+      <div class="pill broken">TOC Broken: <span id="brokenCount">0</span></div>
+      <div class="pill separator-summary" style="background: #fdf2f8; color: #be185d;">H2 Sep: <span
+          id="h2SepCount">0</span>/<span id="h2TotalCount">0</span></div>
+      <div class="pill misplaced-summary" style="background: #fff7ed; color: #9a3412;">Wrong Sep: <span
+          id="misplacedCount">0</span></div>
+      <div class="pill selector-info">Using: <span id="usedSelector">-</span></div>
+    </div>
+
+    <div class="actions" style="display: none;" id="postScanActions">
+      <button id="copyReportBtn" class="secondary-btn">Copy Report</button>
+      <div id="statusMsg" class="status-msg"></div>
+    </div>
+
+    <div class="results-container">
+      <ul id="resultsList"></ul>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>

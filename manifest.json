@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "TOC Anchor Checker",
+  "version": "1.0",
+  "description": "Checks Table of Contents internal links for broken anchors.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "96": "images/icon96.png",
+    "128": "images/icon96.png"
+  }
+}
