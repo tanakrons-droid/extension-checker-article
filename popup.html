@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TOC Anchor Checker</title>
+  <title>VSQ CHECKER</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
   <div class="container">
     <header>
-      <h1>Anchor Checker</h1>
+      <h1>VSQ CHECKER</h1>
       <button id="scanBtn" class="primary-btn">Scan TOC</button>
     </header>
 
@@ -45,6 +45,21 @@
           id="h2SepCount">0</span>/<span id="h2TotalCount">0</span></div>
       <div class="pill misplaced-summary" style="background: #fff7ed; color: #9a3412;">Wrong Sep: <span
           id="misplacedCount">0</span></div>
+      <div class="pill ref-summary" style="background: #f3e8ff; color: #7e22ce;">Ref Class: <span id="refCount">0</span>
+      </div>
+      <div class="pill col-summary" style="background: #ecfdf5; color: #047857;">2 Col: <span id="colCount">0</span>
+      </div>
+      <div class="pill alt-summary" style="background: #fff1f2; color: #e11d48;">Alt Check: <span id="altCount">0</span>
+      </div>
+      <div class="pill list-summary" style="background: #ecfeff; color: #0891b2;">List Split: <span
+          id="listCount">0</span>
+      </div>
+      <div class="pill split-p-summary" style="background: #fff7ed; color: #c2410c;">Split Paragraph: <span
+          id="splitPCount">0</span>
+      </div>
+      <div class="pill typo-summary" style="background: #fefce8; color: #854d0e;">Class Typo: <span
+          id="typoCount">0</span>
+      </div>
       <div class="pill selector-info">Using: <span id="usedSelector">-</span></div>
     </div>
 

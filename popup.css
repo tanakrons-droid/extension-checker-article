@@ -272,3 +272,30 @@ input:checked+.slider {
 input:checked+.slider:before {
     transform: translateX(14px);
 }
+
+.goto-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    color: var(--primary-color);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.goto-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.goto-btn svg {
+    width: 14px;
+    height: 14px;
+}
