@@ -12,7 +12,7 @@
   <div class="container">
     <header>
       <h1>VSQ CHECKER</h1>
-      <button id="scanBtn" class="primary-btn">Scan TOC</button>
+      <button id="scanBtn" class="primary-btn">Scan</button>
     </header>
 
     <div class="settings">
@@ -30,6 +30,26 @@
         </label>
         <span>Auto-detect TOC</span>
       </div>
+    </div>
+
+    <div class="selectors-area">
+      <label for="checkedDomain">Select Domain to Check:</label>
+      <select id="checkedDomain"
+        style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ddd;">
+        <option value="">-- Select Domain --</option>
+        <option value="vsquareconsult.com">vsquareconsult.com</option>
+        <option value="vsquareclinic.co">vsquareclinic.co</option>
+        <option value="vsq-injector.com">vsq-injector.com</option>
+        <option value="vsquare.clinic">vsquare.clinic</option>
+        <option value="vsqclinic.com">vsqclinic.com</option>
+        <option value="drvsquare.com">drvsquare.com</option>
+        <option value="doctorvsquareclinic.com">doctorvsquareclinic.com</option>
+        <option value="bestbrandclinic.com">bestbrandclinic.com</option>
+        <option value="monghaclinic.com">monghaclinic.com</option>
+        <option value="vsquareclinic.com">vsquareclinic.com</option>
+        <option value="vsquareclinic.com/cn/">vsquareclinic.com/cn/</option>
+        <option value="vsquareclinic.com/en/">vsquareclinic.com/en/</option>
+      </select>
     </div>
 
     <div class="selectors-area">
@@ -60,6 +80,47 @@
       <div class="pill typo-summary" style="background: #fefce8; color: #854d0e;">Class Typo: <span
           id="typoCount">0</span>
       </div>
+      <div class="pill br-summary" style="background: #f0fdf4; color: #b45309;">Empty BR: <span id="brCount">0</span>
+      </div>
+      <div class="pill caption-summary" style="background: #fdf4ff; color: #86198f;">Check Caption: <span
+          id="captionCount">0</span>
+      </div>
+      <div class="pill btn-summary" style="background: #eff6ff; color: #1e3a8a;">Button Link: <span
+          id="btnLinkCount">0</span>
+      </div>
+      <div class="pill year-summary" style="background: #fee2e2; color: #dc2626;">Year Check: <span
+          id="yearCount">0</span>
+      </div>
+      <div class="pill knowledge-summary" style="background: #f0fdf4; color: #15803d;">Knowledge Check: <span
+          id="knowledgeCount">0</span>
+      </div>
+      <div class="pill ext-link-summary" style="background: #fffbeb; color: #92400e;">Ext Link: <span
+          id="extLinkCount">0</span>
+      </div>
+      <div class="pill doctor-alt-summary" style="background: #e0f2fe; color: #0369a1;">Doctor Alt: <span
+          id="doctorAltCount">0</span>
+      </div>
+      <div class="pill banner-summary" style="background: #fef2f2; color: #991b1b;">Banner Link: <span
+          id="bannerCount">0</span>
+      </div>
+      <div class="pill wrap-summary" style="background: #fff7ed; color: #9a3412;">Link Wrap: <span
+          id="wrapCount">0</span>
+      </div>
+      <div class="pill doctor-img-summary" style="background: #f0fdfa; color: #0d9488;">Doctor Image: <span
+          id="doctorImgCount">0</span>
+      </div>
+      <div class="pill h3-img-summary" style="background: #fff1f2; color: #9f1239;">H3 Image: <span
+          id="h3ImgCount">0</span>
+      </div>
+      <div class="pill h3-alt-summary" style="background: #fff7ed; color: #c2410c;">H3 Alt: <span
+          id="h3AltCount">0</span>
+      </div>
+      <div class="pill phone-summary" style="background: #eff6ff; color: #1d4ed8;">Phone Link: <span
+          id="phoneCount">0</span>
+      </div>
+      <div class="pill link-status-summary" style="background: #ecfdf5; color: #059669; border: 1px solid #10b981;">Broken Links: <span
+          id="linkStatusCount">0</span>
+      </div>
       <div class="pill selector-info">Using: <span id="usedSelector">-</span></div>
     </div>
 
@@ -68,10 +129,21 @@
       <div id="statusMsg" class="status-msg"></div>
     </div>
 
+    <div id="progressContainer" class="progress-section" style="display: none;">
+      <div class="progress-meta">
+        <span id="progressLabel">Preparing scan...</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+    </div>
+
     <div class="results-container">
       <ul id="resultsList"></ul>
     </div>
   </div>
+
   <script src="popup.js"></script>
 </body>
 
