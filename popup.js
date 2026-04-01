@@ -1383,23 +1383,8 @@ function runScanner(selectors, autoDetect, checkedDomain, originalContentHtml, o
     }
   });
 
-  // 14. EXTERNAL VSQ LINK CHECK
+  // 14. EXTERNAL LINK CHECK
   const extLinkResults = [];
-  const VSQ_DOMAINS = [
-    'vsquareconsult.com',
-    'vsquareclinic.co',
-    'vsq-injector.com',
-    'vsquare.clinic',
-    'vsqclinic.com',
-    'drvsquare.com',
-    'doctorvsquareclinic.com',
-    'bestbrandclinic.com',
-    'monghaclinic.com',
-    'vsquareclinic.com',
-    'vsquareclinic.com/cn/',
-    'vsquareclinic.com/en/'
-  ];
-
   if (checkedDomain) {
     const allLinks = Array.from(document.querySelectorAll('a'));
     allLinks.forEach((link, idx) => {
@@ -1412,35 +1397,26 @@ function runScanner(selectors, autoDetect, checkedDomain, originalContentHtml, o
       if (!href.startsWith('http')) return;
 
       // If link is to the SAME domain as checkedDomain, skip (it's internal)
-      // We check if the href contains the checkedDomain
       if (href.includes(checkedDomain)) return;
 
-      // Check if it's in the other VSQ domains
-      let isOtherVSQ = false;
-      let targetDomainName = '';
+      // It's an external link (either other VSQ or totally external like Line, Facebook, etc.)
+      const target = link.getAttribute('target');
+      if (target !== '_blank') {
+        let domainLabel = 'โดเมนภายนอก';
+        try {
+          const url = new URL(href);
+          domainLabel = url.hostname;
+        } catch (e) { }
 
-      for (const domain of VSQ_DOMAINS) {
-        if (domain === checkedDomain) continue;
-        if (href.includes(domain)) {
-          isOtherVSQ = true;
-          targetDomainName = domain;
-          break;
-        }
-      }
-
-      if (isOtherVSQ) {
-        const target = link.getAttribute('target');
-        if (target !== '_blank') {
-          if (!link.id) link.id = 'ext-vsq-' + idx;
-          extLinkResults.push({
-            type: 'ext-link',
-            id: link.id,
-            ok: false,
-            text: (link.innerText || link.textContent || '').trim().substring(0, 50) || 'Link',
-            href: href,
-            errorMessage: `โดเมนนอก (${targetDomainName}) แต่ไม่ได้เปิด New Tab`
-          });
-        }
+        if (!link.id) link.id = 'ext-link-' + idx;
+        extLinkResults.push({
+          type: 'ext-link',
+          id: link.id,
+          ok: false,
+          text: (link.innerText || link.textContent || '').trim().substring(0, 50) || 'Link',
+          href: href,
+          errorMessage: `ลิงก์ไป ${domainLabel} แต่ไม่ได้เปิด New Tab`
+        });
       }
     });
   }
