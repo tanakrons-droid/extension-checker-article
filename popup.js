@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const settings = await chrome.storage.local.get(['selectors', 'autoDetect', 'showBroken', 'checkedDomain']);
   tocSelectorsTextarea.value = settings.selectors || DEFAULT_SELECTORS;
   autoDetectToggle.checked = settings.autoDetect !== false;
-  showBrokenOnlyToggle.checked = settings.showBroken || false;
+  showBrokenOnlyToggle.checked = settings.showBroken !== false;
   checkedDomainSelect.value = settings.checkedDomain || '';
 
   // Save settings on change
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       resultsList.appendChild(section);
 
       tocResults.forEach(item => {
-        if (item.ok) return; // Only show broken
+        if (showBrokenOnly && item.ok) return;
         resultsList.appendChild(createResultItem(item));
       });
     }
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Render Section: H2 Separators
     if (h2Results.length > 0) {
       const h2Broken = h2Results.filter(r => !r.ok);
-      if (h2Broken.length > 0) {
+      if (!showBrokenOnly || h2Broken.length > 0) {
         const section = document.createElement('li');
         section.className = 'section-header';
         section.style.marginTop = '15px';
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         resultsList.appendChild(section);
 
         h2Results.forEach(item => {
-          if (item.ok) return; // Only show broken
+          if (showBrokenOnly && item.ok) return;
           resultsList.appendChild(createResultItem(item));
         });
       }
